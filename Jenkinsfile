@@ -6,7 +6,19 @@ pipeline {
                 checkout scm
             }
         }
-        stage("Build image") {
+        stage('Unit Test') {
+            steps{
+				sh "chmod 777 gradlew"
+				sh "./gradlew build"				
+            }
+        }
+		stage('Sonnarqube') {
+            steps{
+				sh "chmod 777 gradlew"
+				sh "./gradlew sonarqube"
+            }
+        }
+		stage("Build image") {
             steps {
                 script {
                     myapp = docker.build("mtreuquilg/iva-calculator:${env.BUILD_ID}")
@@ -22,10 +34,10 @@ pipeline {
                     }
                 }
             }
-        }        
+        }
         stage('Deploy Application') {
             steps{
-                sh "docker run -d -p 5000:5000 --name iva-calculator-backend mtreuquilg/iva-calculator:${env.BUILD_ID}"
+				sh "docker run -d -p 8001:8080 --name iva-calculator-backend mtreuquilg/iva-calculator:${env.BUILD_ID}"
             }
         }
     }    

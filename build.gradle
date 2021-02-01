@@ -32,7 +32,7 @@ dependencies {
 sonarqube {
 	properties {
 		property 'sonar.projectName', 'iva-calculator'
-		property 'sonar.host.url', 'http://127.0.0.1:9000'
+		property 'sonar.host.url', 'http://68.183.131.225:9000'
 	}
 }
 
