@@ -37,8 +37,8 @@ class CalculatorControllerTest {
         ResponseEntity<Response> response = restTemplate.postForEntity(
                 new URL("http://localhost:" + port + "/calcula-iva").toString(), request, Response.class);
         assertEquals("1000", response.getBody().getNeto());
-        assertEquals("190", response.getBody().getIva());
-        assertEquals("1190", response.getBody().getTotal());
+        assertEquals("250", response.getBody().getIva());
+        assertEquals("1250", response.getBody().getTotal());
 
     }
 
