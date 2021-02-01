@@ -37,6 +37,8 @@ pipeline {
         }
         stage('Deploy Application') {
             steps{
+				sh "docker stop iva-calculator-backend"
+				sh "docker rm iva-calculator-backend"
 				sh "docker run -d -p 8001:8080 --name iva-calculator-backend mtreuquilg/iva-calculator:${env.BUILD_ID}"
             }
         }
