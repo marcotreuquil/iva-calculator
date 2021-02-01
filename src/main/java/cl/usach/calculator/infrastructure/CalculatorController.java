@@ -21,7 +21,7 @@ public class CalculatorController {
         Response response = new Response();
         try {
             Integer valor = Integer.parseInt(request.getMonto());
-            Integer iva = ((Double)(valor * 0.19)).intValue();
+            Integer iva = ((Double)(valor * 0.25)).intValue();
             Integer total = valor + iva;
             response.setNeto(request.getMonto());
             response.setIva(iva.toString());
